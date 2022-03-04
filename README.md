@@ -6,7 +6,9 @@
 
 On every execution, delc checks /tmp/delc.conf for a 0 or a 1. 
 
-If it's a 1, it sets PRIMARY_KEYMAP as active and echoes a 0 to the tmpfile. If it's a 0, it does the opposite.
+- If the file doesn't exist, it touches it and asks you to restart the program.
+- If it's a 1, it sets PRIMARY_KEYMAP as active and echoes a 0 to the tmpfile. 
+- If it's a 0, it does the opposite.
 
 ## Configuration
 
@@ -14,6 +16,6 @@ If it's a 1, it sets PRIMARY_KEYMAP as active and echoes a 0 to the tmpfile. If 
 #### An example:
 
 ```
-PRIMARY_KEYMAP="us intl"
+PRIMARY_KEYMAP="us"
 SECONDARY_KEYMAP="ru"
 ```
