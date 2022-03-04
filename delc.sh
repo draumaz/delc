@@ -19,14 +19,14 @@ fi; if [ "$CFG_CHK" == "1" ]; then exit; fi
 FILE="/tmp/delc.conf" # generate file to monitor layout
 touch $FILE
 
-if [ "$(cat $FILE)" == "" ]; then
+VAR=$(cat $FILE)
+
+if [ "$VAR" == "" ]; then
 	echo 0 > $FILE
 	echo "initialized file at $FILE."
 	echo "please re-run the script."
 	exit
 fi
-
-VAR=$(cat $FILE)
 
 if [ "$VAR" == "1" ]; then
 	setxkbmap $PRIMARY_KEYMAP
