@@ -1,4 +1,4 @@
-# Draumaz's Epic Layout Switcher
+# Draumaz's Epic Layout Changer
 # Switch between two keymaps on raw Xorg
 
 ## BEGIN CONFIG ##
