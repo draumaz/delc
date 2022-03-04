@@ -1,4 +1,4 @@
-# Draumaz's Epic Layout Switcher
+# Draumaz's Epic Layout Changer
 
 ### Switch between two keyboard layouts on pure X using setxkbmap and a monitor bit.
 
