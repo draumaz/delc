@@ -22,9 +22,10 @@ touch $FILE
 VAR=$(cat $FILE)
 
 if [ "$VAR" == "" ]; then
+	setxkbmap $PRIMARY_KEYMAP
 	echo 0 > $FILE
 	echo "initialized file at $FILE."
-	echo "please re-run the script."
+	echo "switched to primary keymap ($PRIMARY_KEYMAP)."
 	exit
 fi
 
