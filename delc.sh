@@ -1,9 +1,5 @@
 #!/bin/sh
 
-# configure
-PRIMARY_KEYMAP=""
-SECONDARY_KEYMAP=""
-
 case "" in
   ${PRIMARY_KEYMAP}) echo "missing primary keymap config" && CFG_CHK=1 ;;
   ${SECONDARY_KEYMAP}) echo "missing secondary keymap config" && CFG_CHK=1 ;;
@@ -30,4 +26,3 @@ case `cat $FILE` in
     printf "switched to primary keymap (${PRIMARY_KEYMAP}).\n"
     ;;
 esac
-
