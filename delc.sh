@@ -1,40 +1,33 @@
-# Draumaz's Epic Layout Changer
-# Switch between two keymaps on raw Xorg
+#!/bin/sh
 
-## BEGIN CONFIG ##
+# configure
+PRIMARY_KEYMAP=""
+SECONDARY_KEYMAP=""
 
-PRIMARY_KEYMAP="" # e.g. us
-SECONDARY_KEYMAP="" # e.g. ge
-
-## END   CONFIG ##
-
-if [ "$PRIMARY_KEYMAP" == "" ]; then
-	echo "missing primary keymap config"
-	CFG_CHK=1
-fi; if [ "$SECONDARY_KEYMAP" == "" ]; then
-	echo "missing secondary keymap config"
-	CFG_CHK=1
-fi; if [ "$CFG_CHK" == "1" ]; then exit; fi
+case "" in
+  ${PRIMARY_KEYMAP}) echo "missing primary keymap config" && CFG_CHK=1 ;;
+  ${SECONDARY_KEYMAP}) echo "missing secondary keymap config" && CFG_CHK=1 ;;
+esac; case ${CFG_CHK} in 1) exit ;; esac
 
 FILE="/tmp/delc.conf" # generate file to monitor layout
 touch $FILE
 
-VAR=$(cat $FILE)
+case `cat $FILE` in
+  "")
+    setxkbmap ${PRIMARY_KEYMAP}
+    echo 0 > $FILE
+    printf "initialized file at ${FILE}.\nswitched to primary keymap (${PRIMARY_KEYMAP}).\n"
+    ;;
+  "0")
+    setxkbmap ${SECONDARY_KEYMAP}
+    echo 1 > $FILE
+    printf "switched to secondary keymap (${SECONDARY_KEYMAP}).\n"
+    ;;
 
-if [ "$VAR" == "" ]; then
-	setxkbmap $PRIMARY_KEYMAP
-	echo 0 > $FILE
-	echo "initialized file at $FILE."
-	echo "switched to primary keymap ($PRIMARY_KEYMAP)."
-	exit
-fi
+  "1")
+    setxkbmap ${PRIMARY_KEYMAP}
+    echo 0 > $FILE
+    printf "switched to primary keymap (${PRIMARY_KEYMAP}).\n"
+    ;;
+esac
 
-if [ "$VAR" == "1" ]; then
-	setxkbmap $PRIMARY_KEYMAP
-	echo 0 > $FILE
-	echo "switched to primary keymap ($PRIMARY_KEYMAP)."
-else if [ "$VAR" == "0" ]; then
-	setxkbmap $SECONDARY_KEYMAP
-	echo 1 > $FILE
-	echo "switched to secondary keymap ($SECONDARY_KEYMAP)."
-fi fi
