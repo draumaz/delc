@@ -12,4 +12,6 @@ On every execution, delc checks /tmp/delc.conf for a 0 or a 1.
 
 ## Usage
 
+- Install delc somewhere in your path.
+
 ```PRIMARY="us intl" SECONDARY="ru" delc```
